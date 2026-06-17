@@ -1,0 +1,80 @@
+@startuml
+left to right direction
+
+actor User
+actor Admin
+actor "Payment Gateway (DOKU)" as PG
+
+usecase "Register" as UC_Register
+usecase "Melihat landing page" as UC_Landing
+usecase "Melihat Katalog jamu" as UC_Katalog
+usecase "mencari produk" as UC_CariProduk
+usecase "memfilter produk" as UC_FilterProduk
+usecase "Melihat detail katalog" as UC_DetailKatalog
+usecase "menambahkan keranjang" as UC_TambahKeranjangKatalog
+usecase "Melakukan Pembelian" as UC_Pembelian
+usecase "Mengelola Profile" as UC_Profile
+usecase "mengubah" as UC_Ubah
+usecase "mengubah password" as UC_UbahPassword
+usecase "mengubah alamat" as UC_UbahAlamat
+usecase "Login" as UC_Login
+usecase "Melakukan Chatting bot" as UC_Chatbot
+usecase "Menambah file" as UC_TambahFile
+usecase "Mengirim pesan" as UC_KirimPesan
+usecase "Mengelola keranjang" as UC_Keranjang
+usecase "Menambahkan jumlah produk" as UC_TambahJumlah
+usecase "Menghapus produk" as UC_HapusProduk
+usecase "Melihat status pesananan" as UC_StatusPesanan
+usecase "Checkout" as UC_Checkout
+usecase "Mengisi alamat pengiriman" as UC_IsiAlamat
+usecase "memilih metode pembayaran" as UC_PilihMetode
+usecase "Melakukan pembayaran" as UC_Bayar
+usecase "Kelola Knowledge" as UC_KelolaKnowledge
+usecase "Menambah knowledge" as UC_TambahKnowledge
+usecase "Mengedit knowlegde" as UC_EditKnowledge
+usecase "Menghapus knowledge" as UC_HapusKnowledge
+
+User --> UC_Register
+User --> UC_Landing
+User --> UC_Katalog
+User --> UC_Pembelian
+User --> UC_Profile
+User --> UC_Chatbot
+User --> UC_Keranjang
+User --> UC_StatusPesanan
+User --> UC_Checkout
+
+Admin --> UC_KelolaKnowledge
+
+PG --> UC_Bayar
+
+UC_CariProduk .> UC_Katalog : <<extends>>
+UC_FilterProduk .> UC_Katalog : <<extends>>
+UC_DetailKatalog .> UC_Katalog : <<extends>>
+UC_TambahKeranjangKatalog .> UC_DetailKatalog : <<extends>>
+
+UC_Ubah .> UC_Profile : <<extends>>
+UC_UbahPassword .> UC_Profile : <<extends>>
+UC_UbahAlamat .> UC_Profile : <<extends>>
+
+UC_Pembelian .> UC_Login : <<include>>
+UC_Profile .> UC_Login : <<include>>
+UC_Chatbot .> UC_Login : <<include>>
+UC_Keranjang .> UC_Login : <<include>>
+UC_Checkout .> UC_Login : <<include>>
+UC_KelolaKnowledge .> UC_Login : <<include>>
+
+UC_TambahFile .> UC_Chatbot : <<extends>>
+UC_Chatbot .> UC_KirimPesan : <<include>>
+
+UC_TambahJumlah .> UC_Keranjang : <<extends>>
+UC_HapusProduk .> UC_Keranjang : <<extends>>
+
+UC_Checkout .> UC_IsiAlamat : <<include>>
+UC_Checkout .> UC_PilihMetode : <<include>>
+UC_Checkout .> UC_Bayar : <<include>>
+
+UC_TambahKnowledge .> UC_KelolaKnowledge : <<extends>>
+UC_EditKnowledge .> UC_KelolaKnowledge : <<extends>>
+UC_HapusKnowledge .> UC_KelolaKnowledge : <<extends>>
+@enduml

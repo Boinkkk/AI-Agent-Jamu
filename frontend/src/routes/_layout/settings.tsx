@@ -3,11 +3,15 @@ import { createFileRoute } from "@tanstack/react-router"
 import ChangePassword from "@/components/UserSettings/ChangePassword"
 import DeleteAccount from "@/components/UserSettings/DeleteAccount"
 import UserInformation from "@/components/UserSettings/UserInformation"
+import { AddressBook } from "@/components/Marketplace/AddressBook"
+import { OrderHistory } from "@/components/Marketplace/OrderHistory"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useAuth from "@/hooks/useAuth"
 
 const tabsConfig = [
   { value: "my-profile", title: "My profile", component: UserInformation },
+  { value: "addresses", title: "Addresses", component: AddressBook },
+  { value: "orders", title: "Order History", component: OrderHistory },
   { value: "password", title: "Password", component: ChangePassword },
   { value: "danger-zone", title: "Danger zone", component: DeleteAccount },
 ]
